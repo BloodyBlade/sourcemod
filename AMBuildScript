@@ -251,6 +251,18 @@ class SMConfig(object):
       '-fno-strict-aliasing',
       '-Wall',
       '-Werror',
+            '-Wno-error=discarded-qualifiers',
+            '-Wno-error=stringop-overread',
+            '-Wno-error=dangling-pointer=',
+            '-Wno-error=stringop-truncation',
+            '-Wno-error=mismatched-new-delete',
+            '-Wno-error=format-truncation',
+            '-Wno-sign-compare',
+            '-Wno-dangling-pointer',
+            '-Wno-unused-result',
+            '-Wno-error=sign-compare',
+            '-Wno-error=ignored-attributes',
+            '-Wno-error=deprecated-declarations',
       '-Wno-unused',
       '-Wno-switch',
       '-Wno-array-bounds',
@@ -258,6 +270,8 @@ class SMConfig(object):
       '-Wno-dangling-else',
       '-fvisibility=hidden',
     ]
+    if cxx.version >= 'gcc-15.0':
+        cxx.cflags += ['-Wno-error=reorder', '-Wno-error=template-id-cdtor']
     if cxx.target.arch in ['x86', 'x86_64']:
       cxx.cflags += ['-msse']
 
